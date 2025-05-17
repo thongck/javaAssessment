@@ -27,20 +27,43 @@ public class StudentService
     public boolean isSubscribed( String studentId )
     {
         //TODO implement this method
+        if ( students.containsKey( studentId ) ) {
+            return true;
+        }
         return false;
     }
 
     public void showSummary()
     {
         //TODO implement
+        System.out.println("Existing students:");
+
+        for(String key: students.keySet()) {
+            //For each students, show the students' details (id, name, email)
+            Student student = students.get(key);
+            System.out.println(student);
+
+            //on top of that, show the courses each student is taking
+            System.out.println("Courses taken by " + student.getId());
+            for(Course course: student.getCourses()) {
+                System.out.println(course + " grade=" +student.getGrade(course.getCode()));
+
+            }
+        }
+
     }
 
-    public void enrollToCourse( String studentId, Course course )
+    public boolean enrollToCourse( String studentId, Course course )
     {
+        boolean status = false;
+
         if ( students.containsKey( studentId ) )
         {
-            students.get( studentId ).enrollToCourse( course );
+            status = students.get( studentId ).enrollToCourse( course );
+            students.get( studentId ).registerApprovedCourse( course );
         }
+
+        return status;
     }
 
 

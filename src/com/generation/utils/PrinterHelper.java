@@ -38,10 +38,21 @@ public class PrinterHelper
         String id = scanner.next();
         System.out.println( "| Enter student email:                |" );
         String email = scanner.next();
-        System.out.println( "| Enter student birth date(mm/dd/yyyy)|" );
+
         DateFormat formatter = new SimpleDateFormat( "mm/dd/yyyy");
         //TODO validate date format and catch exception to avoid crash
-        Date birthDate = formatter.parse( scanner.next());
+        boolean validInput = false;
+        Date birthDate = null;
+        while(!validInput) {
+            try {        //try to accept user's input
+                System.out.println( "| Enter student birth date(mm/dd/yyyy)|" );
+                birthDate = formatter.parse(scanner.next());
+                validInput = true;
+            } catch (ParseException e) { //but fails, we catch the exception
+                System.out.println("Invalid data format");
+            }
+        }
+
         System.out.println( "|-------------------------------------|" );
         Student student = new Student( id, name, email, birthDate );
         System.out.println( "Student Successfully Registered! " );

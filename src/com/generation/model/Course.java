@@ -6,6 +6,7 @@ public class Course
 
     private final String name;
 
+    //private final int credits;
     private final int credits;
 
     private final Module module;
