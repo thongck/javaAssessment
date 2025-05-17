@@ -39,7 +39,7 @@ public class PrinterHelper
         System.out.println( "| Enter student email:                |" );
         String email = scanner.next();
 
-        DateFormat formatter = new SimpleDateFormat( "mm/dd/yyyy");
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         //TODO validate date format and catch exception to avoid crash
         boolean validInput = false;
         Date birthDate = null;
